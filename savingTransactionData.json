@@ -1,0 +1,59 @@
+{
+    "savingsAccountTransactions": [
+        {
+            "accountId": "724e9f25-9d49-4c61-b1a4-97466dc8294f-BNK",
+            "displayAccountNumber": "XXXXXX3125",
+            "currencyCode": "USD",
+            "achAndDebitCardTransactionIndicator": "USD",
+            "transactionAmount": 500,
+            "transactionDate": "2017-08-30",
+            "transactionDescription": "AUTO Transfer From Checking #5122",
+            "transactionDescriptionExtension": "ONLINE Reference #15886",
+            "transactionPostingDate": "2017-08-30"
+        },
+        {
+            "accountId": "724e9f25-9d49-4c61-b1a4-97466dc8294f-BNK",
+            "displayAccountNumber": "XXXXXX3125",
+            "currencyCode": "USD",
+            "achAndDebitCardTransactionIndicator": "USD",
+            "transactionAmount": 500,
+            "transactionDate": "2017-07-30",
+            "transactionDescription": "AUTO Transfer From Checking #5122",
+            "transactionDescriptionExtension": "ONLINE Reference #125635",
+            "transactionPostingDate": "2017-07-30"
+        },
+        {
+            "accountId": "724e9f25-9d49-4c61-b1a4-97466dc8294f-BNK",
+            "displayAccountNumber": "XXXXXX3125",
+            "currencyCode": "USD",
+            "achAndDebitCardTransactionIndicator": "USD",
+            "transactionAmount": 500,
+            "transactionDate": "2017-06-30",
+            "transactionDescription": "AUTO Transfer From Checking #5122",
+            "transactionDescriptionExtension": "ONLINE Reference #23251",
+            "transactionPostingDate": "2017-06-30"
+        },
+        {
+            "accountId": "724e9f25-9d49-4c61-b1a4-97466dc8294f-BNK",
+            "displayAccountNumber": "XXXXXX3125",
+            "currencyCode": "USD",
+            "achAndDebitCardTransactionIndicator": "USD",
+            "transactionAmount": 500,
+            "transactionDate": "2017-05-30",
+            "transactionDescription": "AUTO Transfer From Checking #5122",
+            "transactionDescriptionExtension": "ONLINE Reference #22125",
+            "transactionPostingDate": "2017-05-30"
+        },
+        {
+            "accountId": "724e9f25-9d49-4c61-b1a4-97466dc8294f-BNK",
+            "displayAccountNumber": "XXXXXX3125",
+            "currencyCode": "USD",
+            "achAndDebitCardTransactionIndicator": "USD",
+            "transactionAmount": 500,
+            "transactionDate": "2017-04-30",
+            "transactionDescription": "AUTO Transfer From CHECKING #5122",
+            "transactionDescriptionExtension": "ONLINE Reference #22511",
+            "transactionPostingDate": "2017-04-30"
+        }
+    ]
+}
