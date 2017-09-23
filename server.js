@@ -19,6 +19,9 @@ const axios = require('axios');
 const querystring = require('querystring');
 const config = require('./config.json');
 
+//Files
+const transactionData = require('./transactionData.json');
+
 //Constants for API access
 const TOKEN_URL = "https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/token/us/gcb"; //HTTPS endpoint to retrieve token
 const ACCOUNTS_URL = "https://sandbox.apihub.citi.com/gcb/api/v2/accounts"; //HTTPS endpoint to retrieve account summary
@@ -54,7 +57,7 @@ var options = {
 };
 
 //page that your redirect URI points to. 
-app.get('/accounts/*', function (req, res) {
+app.get('/accounts/retrieve', function (req, res) {
 	var code = req.query.code;
 	//error path - no code variable passed through url
 	if(typeof code === 'undefined' || code === null){
@@ -85,6 +88,7 @@ app.get('/accounts/*', function (req, res) {
 		);
 	}
 });
+
 
 //routing for entry point of application, handles all urls except for accounts/
 app.get('*', function (req, res) {
