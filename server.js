@@ -163,7 +163,7 @@ function getCategory(num) {
 		return "CONTRACTED SERVICES"; 
 	else if (num >= 3000 && num < 3300)
 		return "AIRLINES";
-	else if (num >= 3000 && num < 3500)
+	else if (num >= 3300 && num < 3500)
 		return "CAR RENTAL";
 	else if (num >= 3500 && num < 4000)
 		return "LODGING";
