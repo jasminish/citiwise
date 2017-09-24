@@ -78,6 +78,7 @@ app.get('/accounts/retrieve', function (req, res) {
 					res.send('<h1>Something Went Wrong. Try again.</h1><p>Error: ' + err + '</p>');
 				} else {
 					//Success: send account information
+					console.log(access_token);
 					res.send(
 						'<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><pre class="prettyprint">' +
 						successfulAccount + 
@@ -91,6 +92,7 @@ app.get('/accounts/retrieve', function (req, res) {
 
 //routing for entry point of application, handles all urls except for accounts/
 app.get('*', function (req, res) {
+	filterDataByMonth(3,2017);
   res.sendFile(path.join(__dirname + "/login.html"));
 });
 
@@ -189,3 +191,22 @@ function getCategory(num) {
 	else 
 		return "OTHERS";
 }	
+
+function filterDataByMonth(monthInput, yearInput){
+	var i = 0;
+	var filteredData = {};
+	Object.keys(transactionData).forEach(function(key) {
+		Object.keys(transactionData[key]).forEach(function(subkey){
+			var dateObject = new Date(transactionData[key][subkey]['transactionDate']);
+			var dataMonth = dateObject.getMonth()+1;
+			var dataYear = dateObject.getFullYear();
+			transactionData[key][subkey]['accountType'] = key;
+			if(dataMonth===monthInput && yearInput===dataYear){
+				filteredData[i] = transactionData[key][subkey] ;
+				i++;
+			}
+		})
+	});
+	console.log(filteredData);
+	return filteredData;
+}
