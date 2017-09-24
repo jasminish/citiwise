@@ -12,6 +12,7 @@
     "async": "^2.3.0",
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
+    "ejs": "^2.5.7",
     "express": "^4.15.2",
     "nexosis-api-client": "^1.2.0"
   }

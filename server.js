@@ -21,6 +21,7 @@ const config = require('./config.json');
 
 //initialize express
 var app = express();
+app.set('view engine', 'ejs');
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -67,4 +68,3 @@ function filterDataByMonth(monthInput, yearInput){
 	console.log(filteredData);
 	return filteredData;
 }
-

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+	<title>Forecast</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script> 
+</head>
+<body>
+	<div class="container">
+		<canvas id="myChart"></canvas>
+	</div>
+	
+	<script>
+	var data = <%- data %>;
+	var labels = ["AGRICULTURAL SERVICES","CONTRACTED SERVICES","AIRLINES","CAR RENTAL","LODGING","TRANSPORTATION SERVICES","UTILITY SERVICES","RETAIL OUTLET SERVICES","CLOTHING STORES","MISCELLANEOUS","BUSINESS SERVICES","PROFESSIONAL SERVICES AND MEMBERSHIP ORGANIZATIONS","GOVERNMENT SERVICES","OTHERS"];
+	var plotData = [];
+	data.forEach(function(d) {
+		// labels.push(new Date(d.transactionDate));
+		plotData.push(d.merchantCategoryName); 
+	});
+	console.log(plotData);
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: 'doughnut',
+		
+		// The data for our dataset
+		data: {
+			labels: labels,
+			datasets: [{
+				data: [0, 0, 0, 414.73999999999995, 0, 3138.6200000000003, 0, 1952.3300000000002, 199.9, 3713.2500000000005, 563.53, 14.2, 130, 7488.210000000001],
+				backgroundColor: ['gray', 'gray', 'gray', 'red', 'gray', 'blue', 'gray', 'green', 'yellow', 'purple', 'orange', 'brown', 'cyan', 'pink']
+			}],
+			
+		},
+		// Configuration options go here
+		options: {
+		}
+	});
+	</script>
+</body>
+</html>   

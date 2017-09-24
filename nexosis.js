@@ -16,7 +16,7 @@ function sendToNexosis(dataSetName, json, callback) {
         },
         data: JSON.stringify(json)
     }).then(function(res) {
-        callback(null, dataSetName, 'transactionAmount', '2017-09-01', '2017-12-31');
+        callback(null, dataSetName, 'transactionAmount', '2017-09-19', '2017-09-30');
     }).catch(function(err) {
         console.log(err); 
     });

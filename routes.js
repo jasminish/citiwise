@@ -13,7 +13,7 @@ const nexosisClient = new client({ key: config.NEXOSIS_API_KEY });
 const myNexiosis = require('./nexosis.js');
 
 //Files
-const rawTransactionData = require('./creditTransactionData.json');
+const rawTransactionData = require('./data.json');
 const transactionData = addCategoryName(rawTransactionData);
 
 //create encoded secret by concatenating ID and Secret with a colon, converting to base64, and prepending with 'Basic '
@@ -36,8 +36,11 @@ const ACCEPT = "application/json";
 //Forecast Page
 router.get('/accounts/forecast', function(req,res){
 	myNexiosis.getForecast(transactionData, function(result){
-        res.send(result);
+        res.send(JSON.stringify(result));
+        // res.render('forecast.ejs', { 'data': JSON.stringify(result) });
     });
+    // const data = require('./data.json');
+    // res.render('forecast.ejs', { 'data': JSON.stringify(data.creditCardAccountTransactions)});
 })
 
 /* GET home page. */
