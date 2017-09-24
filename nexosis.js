@@ -1,3 +1,5 @@
+const async = require('async');
+
 // upload json to nexosis 
 function sendToNexosis(dataSetName, json, callback) {
     axios({
@@ -16,7 +18,7 @@ function sendToNexosis(dataSetName, json, callback) {
 }
 
 // start / end dates eg. 2017-03-31
-function startNexSesh(dataSetName, targetCol, start, end, callback) {
+function startNextSesh(dataSetName, targetCol, start, end, callback) {
     axios({
         method: 'post',
         url: `https://ml.nexosis.com/v1/sessions/forecast?dataSetName=$(dataSetName)&targetColumn=$(targetCol)&startDate=$(start)&endDate=$(end)&resultInterval=Month`,
@@ -54,8 +56,7 @@ function getNextSesh(sessionId) {
     });
 }
 
-function getForecast(jsonPath) {
-	var data = require(`./$(jsonPath)`);
+function getForecast(data) {
 	async.waterfall([
 		function(callback) {
 			callback(null, 'loc', data)
