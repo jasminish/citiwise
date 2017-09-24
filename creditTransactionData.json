@@ -1,5 +1,26 @@
 {
-    "creditCardAccountTransactions": [
+    "columns": {
+        "transactionDate": {
+            "dataType": "date",
+            "role": "timestamp"
+        },
+        "transactionAmount": {
+            "dataType": "numeric",
+            "role": "target"
+        },
+        "transactionDescription": {
+            "role": "none"
+        },
+        "transactionReferenceId": {
+            "role": "none"
+        }, 
+        "merchantDescription": {
+            "role": "none"
+        }
+        
+        
+    },
+    "data": [
         {
             "accountId": "e8cb5780-5a89-4d4a-9ab9-89713b296f52-CC",
             "displayAccountNumber": "XXXXXXXXXXXX3947",

@@ -20,7 +20,7 @@ const querystring = require('querystring');
 const config = require('./config.json');
 
 //Files
-const transactionData = require('./transactionData.json');
+const transactionData = require('./creditTransactionData.json');
 
 //Constants for API access
 const TOKEN_URL = "https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/token/us/gcb"; //HTTPS endpoint to retrieve token
@@ -88,7 +88,6 @@ app.get('/accounts/retrieve', function (req, res) {
 		);
 	}
 });
-
 
 //routing for entry point of application, handles all urls except for accounts/
 app.get('*', function (req, res) {
@@ -190,59 +189,3 @@ function getCategory(num) {
 	else 
 		return "OTHERS";
 }	
-
-// upload json to nexosis 
-function sendToNexosis(dataSetName, json) {
-    axios({
-        method: 'post',
-        url: `https://ml.nexosis.com/v1/data/$(dataSetName)`,
-        headers: {
-            'Content-Type': 'application/json',
-            'api-key': config.NEXOSIS_API_KEY, 
-        },
-        data: JSON.stringfiy(json)
-    }).then(function(res) {
-        // 
-    }).catch(function(err) {
-        console.log(err); 
-    });
-}
-
-// start / end dates eg. 2017-03-31
-function startNexSesh(dataSetName, targetCol, start, end) {
-    axios({
-        method: 'post',
-        url: `https://ml.nexosis.com/v1/sessions/forecast?dataSetName=$(dataSetName)&targetColumn=$(targetCol)&startDate=$(start)&endDate=$(end)&resultInterval=Month`,
-        headers: {
-            'Content-Type': 'application/json',
-            'api-key': config.NEXOSIS_API_KEY, 
-        },
-        data: JSON.stringfiy(json)
-    }).then(function(res) {
-        return res.sessionId;
-    }).catch(function(err) {
-        console.log(err); 
-    });
-}
-
-function getNexSesh(sessionId) {
-    axios({
-        method: 'get',
-        url: `https://ml.nexosis.com/v1/sessions/$(sessionId)/results`,
-        headers: {
-            'Content-Type': 'application/json',
-            'api-key': config.NEXOSIS_API_KEY, 
-        },
-        data: JSON.stringfiy(json)
-    }).then(function(res) {
-        if (res == 'completed') {
-            return res.data; 
-        } else { // try getting again 
-            setInterval(function() {
-                getNexSesh(sessionId);
-            }, 200); 
-        }
-    }).catch(function(err) {
-        console.log(err); 
-    });
-}
