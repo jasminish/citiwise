@@ -41,6 +41,7 @@ const ENCODED_ID_SECRET = "Basic " + tempEncoding.toString('base64');
 
 const client = require('nexosis-api-client').default;
 const nexosisClient = new client({ key: config.NEXOSIS_API_KEY });
+const myNexiosis = require('./nexosis.js');
 
 //initialize express
 var app = express();

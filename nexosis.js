@@ -1,5 +1,5 @@
 // upload json to nexosis 
-function sendToNexosis(dataSetName, json) {
+function sendToNexosis(dataSetName, json, callback) {
     axios({
         method: 'put',
         url: `https://ml.nexosis.com/v1/data/$(dataSetName)`,
@@ -9,14 +9,14 @@ function sendToNexosis(dataSetName, json) {
         },
         data: JSON.stringfiy(json)
     }).then(function(res) {
-        // 
+        callback(null, res.dataSetName, 'transactionAmount', '2017-09-01', '2017-12-31');
     }).catch(function(err) {
         console.log(err); 
     });
 }
 
 // start / end dates eg. 2017-03-31
-function startNexSesh(dataSetName, targetCol, start, end) {
+function startNexSesh(dataSetName, targetCol, start, end, callback) {
     axios({
         method: 'post',
         url: `https://ml.nexosis.com/v1/sessions/forecast?dataSetName=$(dataSetName)&targetColumn=$(targetCol)&startDate=$(start)&endDate=$(end)&resultInterval=Month`,
@@ -26,13 +26,13 @@ function startNexSesh(dataSetName, targetCol, start, end) {
         },
         data: JSON.stringfiy(json)
     }).then(function(res) {
-        return res.sessionId;
+        callback(null, res.sessionId);
     }).catch(function(err) {
         console.log(err); 
     });
 }
 
-function getNexSesh(sessionId) {
+function getNextSesh(sessionId) {
     axios({
         method: 'get',
         url: `https://ml.nexosis.com/v1/sessions/$(sessionId)/results`,
@@ -53,3 +53,21 @@ function getNexSesh(sessionId) {
         console.log(err); 
     });
 }
+
+function getForecast(jsonPath) {
+	var data = require(`./$(jsonPath)`);
+	async.waterfall([
+		function(callback) {
+			callback(null, 'loc', data)
+		}, 
+		sendToNexosis, 
+		startNextSesh, 
+		getNextSesh
+	], function(err, res) {
+		if (err) 
+			console.log(err); 
+		return res.data; 
+	});
+}
+
+exports.getForecast = getForecast; 
