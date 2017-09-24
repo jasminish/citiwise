@@ -20,7 +20,8 @@ const querystring = require('querystring');
 const config = require('./config.json');
 
 //Files
-const transactionData = require('./creditTransactionData.json');
+var rawTransactionData = require('./creditTransactionData.json');
+const transactionData = identifyCategory(rawTransactionData);
 
 //Constants for API access
 const TOKEN_URL = "https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/token/us/gcb"; //HTTPS endpoint to retrieve token
@@ -207,6 +208,18 @@ function filterDataByMonth(monthInput, yearInput){
 			}
 		})
 	});
-	console.log(filteredData);
 	return filteredData;
+}
+
+function identifyCategory(data){
+	Object.keys(data).forEach(function(key) {
+		Object.keys(data[key]).forEach(function(subkey){
+			if (data[key][subkey]['merchantCategory'] != null){
+				var merchantCategoryNum = data[key][subkey]['merchantCategory'];
+				var category = getCategory(merchantCategoryNum);
+				data[key][subkey]['merchantCategoryName'] = category;
+			}
+		})
+	});
+	return data;
 }
