@@ -32,6 +32,14 @@ const REDIRECT_URI = "https://127.0.0.1:3000/accounts/retrieve"; //URI to redire
 const SAMPLE_UUID = "a293fe0a-51ff-4b03-9376-022f1a1b453e"; //UUID - can be any generated value
 const ACCEPT = "application/json"; 
 
+
+//Forecast Page
+router.get('/accounts/forecast', function(req,res){
+	myNexiosis.getForecast(transactionData, function(result){
+        res.send(result);
+    });
+})
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname + "/login.html"));
@@ -71,10 +79,6 @@ router.get('/accounts/retrieve', function (req, res) {
 	}
 });
 
-//Forecast Page
-router.get('/accounts/forecast',function(req,res){
-	myNexiosis.getForecast(transactionData);
-})
 
 /**
 takes a code, and a callback function for use with async waterfall
@@ -169,7 +173,6 @@ function addCategoryName(data){
 			data[key][subkey]['merchantCategoryName'] = getCategory(merchantCategoryNum);
 		})
 	});
-	console.log(data);
 	return data;
 }
 
